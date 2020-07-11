@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Subjects Controller
@@ -17,6 +18,15 @@ class SubjectsController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        $this->set('title', 'Matérias');
+        // Allow users to register and logout.
+        // You should not add the "login" action to allow list. Doing so would
+        // cause problems with normal functioning of AuthComponent.
+    }
+
     public function index()
     {
         $this->set('title', 'Matérias');
