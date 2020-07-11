@@ -43,6 +43,13 @@ class SubjectsHelper extends Helper
         return $subjects;
     }
 
+    public function getAllGradesByEnrollmentId($id)
+    {
+        $subjects = TableRegistry::getTableLocator()->get('Grades');
+        $subjects = $subjects->find('all')->where(['enrollment_id' => $id])->toArray();
+        return $subjects;
+    }
+
     /* Retorna todos os cursos */
     public function getAllCourses()
     {

@@ -88,16 +88,27 @@ class GradesController extends AppController
     public function edit($id = null)
     {
         $this->set('title', 'Avaliações');
-
+    $this->loadModel('Reports');
+     $this->loadModel('Enrollments');
         $grade = $this->Grades->get($id, [
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $grade = $this->Grades->patchEntity($grade, $this->request->getData());
             if ($this->Grades->save($grade)) {
-                $this->Flash->success(__('A avaliação foi salva com sucesso.'));
+                $this->Flash->success(__('A avaliação foi salva com sucesso, verifique o diário de classe.'));
+                $enrollments = $this->Enrollments->find('all')->Where(['id' => $grade->enrollment_id])->limit('1')->toArray();
+                foreach($enrollments as $enrollment){
+                    $student_id =  $enrollment->student_id;
+                    $subject_id =  $enrollment->subject_id;
+                    $reports = $this->Reports->find('all')->Where(['student_id' => $student_id])->Where(['subject_id' => $subject_id])->toArray();
+                    foreach($reports as $report){
+                        $report_id = $report->id;
+                        $this->Reports->deleteAll(['id' => $report_id]);
+                        $this->Flash->success(__('A avaliação foi alterada com sucesso, altere o diário de classe para finalizar.'));
 
-                return $this->redirect(['action' => 'index']);
+                    }
+                }
             }
             $this->Flash->error(__('A avaliação não pode ser salva. Tente novamente..'));
         }

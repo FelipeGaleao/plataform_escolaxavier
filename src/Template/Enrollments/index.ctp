@@ -39,9 +39,6 @@ $this->assign('title', 'Matriculas');
                     <td>
                         <div><?php echo $enrollment->subject->name;?></div>
                     </td>
-                    <td class="text-muted">
-                        <a href="/matriculas/apagar/<?php echo $enrollment->id;?>">Remover</a>
-                    </td>
                     <td>
                         <a href="/matriculas/editar/<?php echo $enrollment->id;?>">Editar</a>
                     </td>

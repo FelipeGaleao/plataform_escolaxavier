@@ -39,9 +39,6 @@ $this->assign('title', 'Avaliações');
                     <td>
                         <div><?php echo $grade->grade_value;?></div>
                     </td>
-                    <td class="text-muted">
-                        <a href="/avaliacoes/apagar/<?php echo $grade->id;?>">Remover</a>
-                    </td>
                     <td>
                         <a href="/avaliacoes/editar/<?php echo $grade->id;?>">Editar</a>
                     </td>

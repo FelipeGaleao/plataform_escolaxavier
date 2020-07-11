@@ -35,9 +35,6 @@ $this->assign('title', 'Matérias');
                     <td>
                         <div><?php echo $this->Subjects->getNameOfCoursebyId($subject->course_id);?></div>
                     </td>
-                    <td class="text-muted">
-                        <a href="/materias/apagar/<?php echo $subject->id;?>">Remover *</a>
-                    </td>
                     <td>
                         <a href="/materias/editar/<?php echo $subject->id;?>">Editar</a>
                     </td>

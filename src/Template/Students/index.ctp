@@ -31,9 +31,6 @@ $this->assign('title', 'Estudantes');
                     <td>
                         <div><?php echo $student->email;?></div>
                     </td>
-                    <td class="text-muted">
-                        <a href="/estudantes/apagar/<?php echo $student->id;?>">Remover</a>
-                    </td>
                     <td>
                         <a href="/estudantes/editar/<?php echo $student->id;?>">Editar</a>
                     </td>
