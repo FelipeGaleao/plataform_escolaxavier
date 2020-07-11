@@ -69,7 +69,6 @@ class GradesController extends AppController
             $grade = $this->Grades->patchEntity($grade, $this->request->getData());
             if ($this->Grades->save($grade)) {
                 $this->Flash->success(__('A avaliação foi salva com sucesso.'));
-
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('A avaliação não pode ser salva. Tente novamente..'));
@@ -106,7 +105,6 @@ class GradesController extends AppController
                         $report_id = $report->id;
                         $this->Reports->deleteAll(['id' => $report_id]);
                         $this->Flash->success(__('A avaliação foi alterada com sucesso, altere o diário de classe para finalizar.'));
-
                     }
                 }
             }

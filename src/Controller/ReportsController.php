@@ -29,6 +29,7 @@ class ReportsController extends AppController
 
     public function add()
     {
+        $this->loadModel('Enrollments');
         $report = $this->Reports->newEntity();
         if ($this->request->is('get')) {
             $report['student_id'] = $_GET['student_id'];
@@ -38,9 +39,9 @@ class ReportsController extends AppController
             $report['status'] = $_GET['status'];
             $report = $this->Reports->patchEntity($report, $this->request->getData());
             if ($this->Reports->save($report)) {
-                $this->Flash->success(__('The report has been saved.'));
+                $this->Flash->success(__('A nota foi salva com sucesso'));
             }
-            $this->Flash->error(__('The report could not be saved. Please, try again.'));
+            $this->Flash->error(__('Não foi possível salvar a nota.'));
         }
         $courses = $this->Reports->Courses->find('list', ['limit' => 200]);
         $subjects = $this->Reports->Subjects->find('list', ['limit' => 200]);
